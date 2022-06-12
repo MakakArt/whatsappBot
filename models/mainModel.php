@@ -25,14 +25,17 @@ class mainModel
         return $apiTokenInstance;
     }
 
-    protected function validateNumber($number){
+    protected function validateNumber($number, $bool){
         $number = preg_replace('/[^0-9.]/','', $number);
         $number = str_split($number);
         if (($number[0] = 8) || ($number[0] = "8")){
             $number[0] = 7;
         }
         $number = implode("", $number);
-        return $number.'@c.us';
+        if ($bool){
+            return $number.'@c.us';
+        }
+        return $number;
     }
 
 
@@ -48,6 +51,9 @@ class mainModel
         curl_setopt($curl, CURLOPT_URL, $this->GetUrl($method));
         curl_setopt($curl, CURLOPT_POST, true);
         $result = curl_exec($curl);
+        if (json_decode($result,true)){
+            return json_decode($result,true);
+        }
         return $result;
     }
 

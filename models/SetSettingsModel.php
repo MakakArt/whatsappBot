@@ -9,9 +9,8 @@ class SetSettingsModel extends mainModel
 
     public function madeRequest($post){
         unset($post['action']);
-        $post['delaySendMessagesMilliseconds'] = ($post['delaySendMessagesMilliseconds'] * 1000 * 60);
+        $post['delaySendMessagesMilliseconds'] = ($post['delaySendMessagesMilliseconds'] * 1000);
         $result = $this->sendRequest($post, $this->methodUrl);
-        $result = json_decode($result, true);
         return $result;
     }
 

@@ -48,17 +48,29 @@ class SendMessageModel extends mainModel
         $numbers = explode("\n", $post['numbers']);
         $message = $post['message'];
         foreach ($numbers as $number){
-            $number = $this->validateNumber($number);
+            $number = $this->validateNumber($number, true);
             if ($this->checkRepeat($number)){
                 $json_message = ["chatId"=>$number, "message"=>$message];
                 $res = $this->sendRequest($json_message, $this->methodUrl);
-                $res = json_decode($res,true);
                 $this->writeLog(["Number"=>$number, "result"=>$res, "message"=>$message]);
                 $result[]=$res;
             }
         }
         return $result;
     }
+
+    public function deleteLogs($post, $bool){
+        $logs = json_decode((file_get_contents('./db/database.json')), true);
+        if ($bool){
+            $post = range((min($post)), (max($post)));
+        }
+        foreach ($post as $key){
+            unset($logs[$key]);
+        }
+        $logs = json_encode(array_values($logs));
+        file_put_contents('./db/database.json', $logs);
+    }
+
     
 }
 
