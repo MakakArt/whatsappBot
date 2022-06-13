@@ -15,12 +15,7 @@ class checkModel extends mainModel
             $number = $this->validateNumber($number, false);
             $data = ['phoneNumber' => $number];
             $res = $this->sendRequest($data, $this->methodUrl);
-            if ($res['existsWhatsapp']){
-                $result[] = ['phoneNumber' => $number, 'existsWhatsapp' => '1'];
-            }
-            else {
-                $result[] = ['phoneNumber' => $number, 'existsWhatsapp' => '0'];
-            }
+            $result[] = ['phoneNumber' => $number, 'existsWhatsapp' => (int)$res['existsWhatsapp']];
             
         }
         return $result;

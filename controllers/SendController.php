@@ -24,13 +24,13 @@ class sendController extends mainController
     public function actionDeletelog(){
         $post = $_POST;
         if ($post['action'] == 'delete'){
-            unset($post['action']);
-            $this->model->deleteLogs($post, false);
+            $bool = false;
         }
-        if ($post['action'] == 'deletemany'){
-            unset($post['action']);
-            $this->model->deleteLogs($post, true);
+        elseif ($post['action'] == 'deletemany'){
+            $bool = true;
         }
+        unset($post['action']);
+        $this->model->deleteLogs($post, $bool);
         header('Location: /send/viewlog');
     }
 

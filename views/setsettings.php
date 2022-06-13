@@ -3,7 +3,7 @@
             <textarea name = "delaySendMessagesMilliseconds" type = "text" placeholder = "Задержка отправки сообщения (минуты)"><?= ($array['delaySendMessagesMilliseconds']/1000); ?></textarea>
             <textarea name="sendFromUTC" type="text" placeholder = "Отправлять сообщения от"><?= $array['sendFromUTC']; ?></textarea>
             <textarea name="sendToUTC" type="text" placeholder = "Отправлять сообщения до"><?= $array['sendToUTC']; ?></textarea>
-            <textarea name="proxyInstance" type="text" placeholder = "Прокси в формате {ip}:{port}:{login}:{password}"></textarea>
+            <textarea name="proxyInstance" type="text" placeholder = "Прокси в формате {ip}:{port}:{login}:{password}"><?= $array['proxyInstance']; ?></textarea>
             <button name="action" value="set">Отправить</button>
         </form>
         <h2>Текущие настройки</h2>

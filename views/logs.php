@@ -4,8 +4,8 @@
             <form action = "/send/deletelog" method = "POST">
                 <?php $i = 0;?>
                 <?php foreach ($array as $value):?>
-                    <input type="checkbox" id="deleteNumber" name="delete<?=$i?>" value="<?=$i?>">
-                    <label for="deleteNumber">Номер отправки: <?= str_replace("@c.us", "", $value['Number'])?>
+                    <input type="checkbox" id="deleteNumber<?=$i?>" name="delete<?=$i?>" value="<?=$i?>">
+                    <label style="cursor:pointer;-moz-user-select: -moz-none;-o-user-select: none;-khtml-user-select: none;-webkit-user-select: none;user-select: none;" for="deleteNumber<?=$i?>">Номер отправки: <?= str_replace("@c.us", "", $value['Number'])?>
                         <br>Результат: <?php if ($value['result']['idMessage']) {echo 'отправлено на сервер';} else {echo 'произошла ошибка';}?>
                         <br>idMessage: <?= $value['result']['idMessage'] ?>
                         <br>Сообщение: <?= $value['message'] ?>
